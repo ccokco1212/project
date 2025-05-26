@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Trip Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <img src="../logo.png" alt="로고" class="logo" />
+    <button class="mypage-btn">Mypage</button>
+  </nav>
+
+  <main class="container">
+    <section class="search-section">
+      <label for="city">여행 갈 도시:</label>
+      <input type="text" id="city" placeholder="value"><br>
+
+      <label for="category">카테고리:</label>
+      <select id="category">
+        <option value="">선택</option>
+        <option value="관광지">관광지</option>
+        <option value="음식점">음식점</option>
+        <option value="카페">카페</option>
+      </select>
+    </section>
+
+    <section class="place-list">
+      <h2>Trip Planner</h2>
+      <div class="place-item">
+        <div>
+          <strong>장소 이름</strong><br>
+          <span>주소</span>
+        </div>
+        <button class="detail-btn">자세히 보기</button>
+      </div>
+      <div class="place-item">
+        <div>
+          <strong>장소 이름</strong><br>
+          <span>주소</span>
+        </div>
+        <button class="detail-btn">자세히 보기</button>
+      </div>
+      <div class="place-item">
+        <div>
+          <strong>장소 이름</strong><br>
+          <span>주소</span>
+        </div>
+        <button class="detail-btn">자세히 보기</button>
+      </div>
+    </section>
+
+    <section class="schedule-section">
+      <div class="tabs">
+        <button class="tab active">Day 1</button>
+        <button class="tab">Day 2</button>
+        <button class="tab add-day">+</button>
+      </div>
+      <div class="schedule-box">
+        <h3>오전</h3>
+        <div class="dropzone" id="morning"></div>
+
+        <h3>오후</h3>
+        <div class="dropzone" id="afternoon"></div>
+      </div>
+
+      <div class="add-place">
+        <input type="text" id="new-place" placeholder="value">
+        <button id="save-btn">SAVE</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

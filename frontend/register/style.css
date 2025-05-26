@@ -1,5 +1,5 @@
 body {
-  background-color: #f6f6f6;
+  background-color: #F7FAFC;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -11,12 +11,14 @@ body {
   font-weight: bold;
   margin: 80px 0 0 0;
   line-height: 1;
+  color: #1D78C9;
 }
 
 .title2{
   text-align: center;
   font-size: 30px;
   margin:0;
+  color: #1D78C9;
 }
 
 
@@ -49,6 +51,19 @@ body {
 }
 
 
+/* 회원가입 박스 */
+.register-wrapper {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 40px;
+  background-color: #f9f9f9;
+  border: 3px solid #1D78C9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
 .login-wrapper h1 {
   margin-bottom: 10px;
 }
@@ -73,7 +88,7 @@ body {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #1D78C9;
   border-radius: 6px;
   box-sizing: border-box;
 }
@@ -87,7 +102,7 @@ body {
   padding: 12px;
   font-size: 16px;
   border: none;
-  background-color: #333;
+  background-color: #1D78C9;
   color: white;
   border-radius: 6px;
   cursor: pointer;
@@ -95,14 +110,4 @@ body {
 
 .button-group button:hover {
   background-color: #000;
-}
-
-.register-wrapper {
-  max-width: 400px;
-  margin: 80px auto;
-  padding: 40px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  text-align: center;
 }

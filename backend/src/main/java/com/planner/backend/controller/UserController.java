@@ -6,9 +6,14 @@ import com.planner.backend.entity.User;
 import com.planner.backend.repository.UserRepository;
 import com.planner.backend.security.JwtTokenProvider;
 import com.planner.backend.service.UserService;
+import com.planner.backend.dto.UserResponseDto;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+
+
 
 @RestController
 @RequestMapping("/api/users")
@@ -37,5 +42,17 @@ public class UserController {
         String token = jwtTokenProvider.createToken(user.getAccountId());
         return ResponseEntity.ok(token);
     }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> getMyInfo(Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+
+        return ResponseEntity.ok(new UserResponseDto(
+                user.getAccountId(),
+                user.getEmail()
+        ));
+    }
+
+
 
 }

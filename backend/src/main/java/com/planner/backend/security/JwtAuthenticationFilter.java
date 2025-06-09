@@ -17,7 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor // ✅ 이거 꼭 있어야 의존성 주입되는 생성자 생성됨
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -26,42 +26,36 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
 
         String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        // 1. 토큰 없거나 Bearer로 시작 안 하면 필터 패스
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        String token = authHeader.substring(7); // "Bearer " 제거
+        String token = authHeader.substring(7);
 
-        // 2. 토큰 유효성 검사 실패 시 필터 패스
         if (!jwtTokenProvider.validateToken(token)) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // 3. 토큰에서 이메일 추출 및 사용자 조회
         try {
             String email = jwtTokenProvider.getEmailFromToken(token);
             User user = userRepository.findByEmail(email)
                     .orElseThrow(() -> new RuntimeException("JWT 사용자 이메일을 찾을 수 없습니다: " + email));
 
-            // 4. 인증 객체 생성 및 등록
             UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(user, null, null); // 권한 없음
+                    new UsernamePasswordAuthenticationToken(user, null, null);
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (Exception e) {
-            // 예외 발생 시 로그만 남기고 인증은 하지 않음
             System.err.println("[JwtAuthenticationFilter] 예외 발생: " + e.getMessage());
         }
 
-        // 5. 다음 필터로 진행
         filterChain.doFilter(request, response);
     }
 }

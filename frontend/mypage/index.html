@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>마이페이지</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 style="color: #1d78c9;">마이페이지</h1>
+
+    <!-- 여행 리스트 -->
+    <section class="trip-list">
+      <h2>여행 리스트</h2>
+      <div id="trip-container"></div>
+    </section>
+
+    <!-- 정보 수정 -->
+    <section class="info-section">
+      <h2>정보 수정</h2>
+      <label for="email">이메일 변경</label>
+      <input type="email" id="email" placeholder="example@email.com" />
+
+      <label for="password">비밀번호 변경</label>
+      <input type="password" id="password" placeholder="새 비밀번호" />
+
+      <button onclick="updateInfo()">정보 수정</button>
+    </section>
+
+    <!-- 로그아웃 -->
+    <section class="logout-section">
+      <button onclick="logout()">로그아웃</button>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

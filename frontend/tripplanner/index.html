@@ -1,72 +1,58 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trip Planner</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <nav class="navbar">
     <img src="../logo.png" alt="로고" class="logo" />
-    <button class="mypage-btn">Mypage</button>
+    <button class="mypage-btn" onclick="location.href='../mypage/index.html'">Mypage</button>
   </nav>
 
   <main class="container">
+    <!-- 🔍 검색 섹션 -->
     <section class="search-section">
       <label for="city">여행 갈 도시:</label>
-      <input type="text" id="city" placeholder="value"><br>
+      <input type="text" id="city" class="input-large" placeholder="예: 경주"><br><br>
 
       <label for="category">카테고리:</label>
-      <select id="category">
-        <option value="">선택</option>
+      <select id="category" class="input-large">
+        <option value="">카테고리 선택</option>
         <option value="관광지">관광지</option>
-        <option value="음식점">음식점</option>
         <option value="카페">카페</option>
-      </select>
+        <option value="음식점">음식점</option>
+      </select><br><br>
+
+      <button class="save-btn" onclick="handleSearch()">검색</button>
     </section>
 
+    <!-- 🔍 장소 목록 -->
     <section class="place-list">
-      <h2>Trip Planner</h2>
-      <div class="place-item">
-        <div>
-          <strong>장소 이름</strong><br>
-          <span>주소</span>
-        </div>
-        <button class="detail-btn">자세히 보기</button>
-      </div>
-      <div class="place-item">
-        <div>
-          <strong>장소 이름</strong><br>
-          <span>주소</span>
-        </div>
-        <button class="detail-btn">자세히 보기</button>
-      </div>
-      <div class="place-item">
-        <div>
-          <strong>장소 이름</strong><br>
-          <span>주소</span>
-        </div>
-        <button class="detail-btn">자세히 보기</button>
-      </div>
+      <h2>검색 결과</h2>
+      <div id="search-results"></div>
     </section>
 
+    <!-- 🗓️ 일정 작성 섹션 -->
     <section class="schedule-section">
-      <div class="tabs">
-        <button class="tab active">Day 1</button>
-        <button class="tab">Day 2</button>
-        <button class="tab add-day">+</button>
+      <div class="tabs" id="tab-container">
+        <button class="tab active" onclick="switchDay(1)">Day 1</button>
+        <button class="tab" onclick="switchDay(2)">Day 2</button>
+        <button class="tab add-day" onclick="addDay()">+</button>
       </div>
-      <div class="schedule-box">
-        <h3>오전</h3>
-        <div class="dropzone" id="morning"></div>
 
+      <div class="schedule-box" id="schedule-container">
+        <h3>오전</h3>
+        <div class="dropzone" id="morning-1"></div>
         <h3>오후</h3>
-        <div class="dropzone" id="afternoon"></div>
+        <div class="dropzone" id="afternoon-1"></div>
       </div>
 
       <div class="add-place">
-        <input type="text" id="new-place" placeholder="value">
-        <button id="save-btn">SAVE</button>
+        <input type="text" id="new-place" placeholder="일정 제목 입력">
+        <button id="save-btn" class="save-btn">SAVE</button>
       </div>
     </section>
   </main>
